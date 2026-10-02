@@ -16,6 +16,16 @@
       <p id="racha-texto" class="racha-texto">días seguidos</p>
     </section>
 
+    <!-- Tareas de hoy -->
+    <section class="tarjeta">
+      <h2>Tareas de hoy <span id="tareas-progreso" class="contador">0/3</span></h2>
+      <ul class="tareas">
+        <li id="tarea-sesion">Registrar una sesión de estudio</li>
+        <li id="tarea-palabras">Añadir 3 palabras nuevas en inglés</li>
+        <li id="tarea-video">Ver un video o podcast en inglés y responder las preguntas</li>
+      </ul>
+    </section>
+
     <!-- Formulario para registrar una sesión -->
     <section class="tarjeta">
       <h2>Nueva sesión</h2>
@@ -33,6 +43,61 @@
       </form>
     </section>
 
+    <!-- Palabras del día -->
+    <section class="tarjeta">
+      <h2>Palabras del día <span id="palabras-progreso" class="contador">0/3</span></h2>
+      <form id="formulario-palabra">
+        <label for="palabra">Palabra en inglés</label>
+        <input type="text" id="palabra" placeholder="Ej.: meaningful" maxlength="40" autocomplete="off" required>
+
+        <label for="significado">Significado (opcional)</label>
+        <input type="text" id="significado" placeholder="Ej.: significativo" maxlength="80" autocomplete="off">
+
+        <p id="error-palabra" class="error" role="alert" hidden></p>
+        <button type="submit" id="boton-palabra">Añadir palabra</button>
+      </form>
+      <ul id="lista-palabras" class="lista"></ul>
+      <p id="total-palabras" class="nota"></p>
+    </section>
+
+    <!-- Video o podcast en inglés -->
+    <section class="tarjeta">
+      <h2>Video o podcast en inglés</h2>
+      <form id="formulario-url">
+        <label for="url">Enlace del video o podcast</label>
+        <input type="url" id="url" placeholder="https://www.youtube.com/watch?v=…" required>
+        <p id="error-url" class="error" role="alert" hidden></p>
+        <button type="submit">Cargar</button>
+      </form>
+
+      <div id="video-actual" hidden>
+        <p class="nota">Plataforma: <strong id="video-plataforma"></strong> · <a id="video-enlace" target="_blank" rel="noopener noreferrer">Abrir en una pestaña nueva</a></p>
+        <div id="video-reproductor" class="reproductor"></div>
+
+        <form id="formulario-preguntas">
+          <h3>Questions</h3>
+          <p class="nota">Responde en inglés, con al menos 3 palabras cada una.</p>
+          <div id="preguntas"></div>
+
+          <label for="comprension">¿Cuánto entendiste? <span id="comprension-valor">50 %</span></label>
+          <input type="range" id="comprension" min="0" max="100" step="10" value="50">
+
+          <p id="error-respuestas" class="error" role="alert" hidden></p>
+          <button type="submit">Guardar respuestas</button>
+        </form>
+      </div>
+
+      <ul id="lista-videos" class="lista"></ul>
+    </section>
+
+    <!-- Consejos desbloqueables -->
+    <section class="tarjeta">
+      <h2>Consejos <span class="contador">🔑 <span id="tokens">0</span></span></h2>
+      <p class="nota">Ganas 1 token cada día que completas tus 3 palabras. Úsalo para desbloquear un consejo para aprender mejor.</p>
+      <button type="button" id="boton-consejo">Desbloquear consejo</button>
+      <ol id="lista-consejos" class="consejos"></ol>
+    </section>
+
     <!-- Lista de sesiones -->
     <section class="tarjeta">
       <h2>Sesiones</h2>
@@ -41,6 +106,7 @@
     </section>
   </main>
 
+  <script src="logica.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
